@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Nusrah!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .birthday-text {
+            font-family: 'Pacifico', cursive;
+        }
+        
+        .message-text {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            animation: fall linear forwards;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .color-change {
+            animation: colorChange 8s infinite alternate;
+        }
+        
+        @keyframes colorChange {
+            0% { color: #ff6b6b; }
+            25% { color: #4ecdc4; }
+            50% { color: #ffe66d; }
+            75% { color: #ff9ff3; }
+            100% { color: #48dbfb; }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex items-center justify-center p-4">
+    <!-- Confetti Background -->
+    <div id="confetti-container" class="absolute inset-0 pointer-events-none"></div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10 bg-white/90 backdrop-blur-sm rounded-3xl p-8 md:p-12 max-w-4xl w-full shadow-2xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="birthday-text text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent color-change">
+                Happy Birthday Nusrah!
+            </h1>
+            <div class="w-24 h-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full mx-auto mt-4"></div>
+        </div>
+        
+        <!-- Birthday Cake Image -->
+        <div class="flex justify-center mb-8 float-animation">
+            <div class="relative">
+                <div class="absolute -inset-4 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full blur opacity-30"></div>
+                <img 
+                    src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/170c333b-93ce-4079-baf7-6bbc260df37a.png" 
+                    alt="Beautiful birthday cake with pink frosting, rainbow sprinkles, and glowing candles for Nusrah's special day"
+                    class="relative z-10 rounded-2xl shadow-xl w-48 h-48 md:w-64 md:h-64 object-cover"
+                >
+            </div>
+        </div>
+        
+        <!-- Birthday Message -->
+        <div class="text-center mb-8">
+            <p class="message-text text-2xl md:text-3xl text-gray-700 leading-relaxed">
+                Wishing the most beautiful soul a day filled with joy, laughter, and all the happiness you deserve! 
+                May your special day be as bright and colorful as you make our lives. 💖
+            </p>
+        </div>
+        
+        <!-- Colorful Decorations -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-pink-400 rounded-2xl p-4 text-center text-white font-semibold pulse-animation">
+                Joy
+            </div>
+            <div class="bg-purple-400 rounded-2xl p-4 text-center text-white font-semibold pulse-animation" style="animation-delay: 0.5s;">
+                Love
+            </div>
+            <div class="bg-blue-400 rounded-2xl p-4 text-center text-white font-semibold pulse-animation" style="animation-delay: 1s;">
+                Laughter
+            </div>
+            <div class="bg-green-400 rounded-2xl p-4 text-center text-white font-semibold pulse-animation" style="animation-delay: 1.5s;">
+                Magic
+            </div>
+        </div>
+        
+        <!-- Interactive Birthday Card -->
+        <div class="bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-purple-800 mb-4 text-center">A Special Message for You</h2>
+            <p class="text-gray-700 text-center">
+                Nusrah, your kindness shines brighter than birthday candles and your smile lights up every room. 
+                Today we celebrate the amazing person you are! 🎉
+            </p>
+        </div>
+        
+        <!-- Birthday Countdown/Wishes -->
+        <div class="text-center">
+            <button onclick="showBirthdayWish()" class="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-pink-600 hover:to-purple-600 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                Make a Birthday Wish!
+            </button>
+            <div id="birthdayWish" class="hidden mt-4 p-4 bg-yellow-100 rounded-2xl">
+                <p class="text-orange-800 font-semibold">Your wish has been sent to the birthday stars! ✨</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Balloons -->
+    <div class="absolute top-4 left-4 w-12 h-16 bg-red-400 rounded-full opacity-60 float-animation" style="animation-delay: 0.2s;"></div>
+    <div class="absolute top-8 right-8 w-10 h-14 bg-blue-400 rounded-full opacity-60 float-animation" style="animation-delay: 0.7s;"></div>
+    <div class="absolute bottom-12 left-12 w-8 h-12 bg-yellow-400 rounded-full opacity-60 float-animation" style="animation-delay: 1.2s;"></div>
+    <div class="absolute bottom-8 right-4 w-11 h-15 bg-green-400 rounded-full opacity-60 float-animation" style="animation-delay: 0.9s;"></div>
+
+    <script>
+        // Create confetti
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff9ff3', '#48dbfb', '#a55eea'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // Continuous confetti
+        setInterval(createConfetti, 2000);
+        createConfetti(); // Initial confetti
+        
+        // Birthday wish function
+        function showBirthdayWish() {
+            const wishElement = document.getElementById('birthdayWish');
+            wishElement.classList.remove('hidden');
+            
+            // Add some celebratory effects
+            for(let i = 0; i < 20; i++) {
+                createConfetti();
+            }
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                wishElement.classList.add('hidden');
+            }, 3000);
+        }
+        
+        // Add some interactive color changes
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            const hueRotate = x * 360;
+            const saturation = 80 + y * 20;
+            
+            document.body.style.background = `linear-gradient(${135 + x * 45}deg, 
+                hsl(${240 + hueRotate/4}, ${saturation}%, 60%), 
+                hsl(${280 + hueRotate/4}, ${saturation}%, 70%))`;
+        });
+    </script>
+</body>
+</html>
+
